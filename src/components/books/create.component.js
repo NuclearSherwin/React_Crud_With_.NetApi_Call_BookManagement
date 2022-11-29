@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
 
-const CreateComponent = () => {
+// components
+
+const CreateComponent = () => {    
+
   return (
-    <div>CreateComponent</div>
-  )
-}
+    <>
 
-export default CreateComponent
+    </>
+  );
+};
+
+export default CreateComponent;
