@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { getAllBooks, deleteBook } from "../functions/books";
 
 const IndexComponent = () => {
@@ -41,7 +42,7 @@ const IndexComponent = () => {
         <td>{book.publishDate}</td>
         <td>
           <div className="d-flex">
-            <button className="btn btn-warning">Edit</button>
+            <Link to={'/edit/' + book.id}  className="btn btn-warning">Edit</Link>
             <button
               onClick={() => onDelete(book.id)}
               className="btn btn-danger"
