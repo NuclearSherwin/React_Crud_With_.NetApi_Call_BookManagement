@@ -14,9 +14,8 @@ export const getBookById = async (bookId) =>
     await axios.get(`${BASE_URL}/books/${bookId}`)
  
 // create a new book
-export const createBook = async (book) => {
+export const createBook = async (book) => 
   await axios.post(`${BASE_URL}/books/`, book);
-};
 
 // update a book
 export const updateBook = async (bookId, book) => {
