@@ -18,9 +18,9 @@ export const createBook = async (book) =>
   await axios.post(`${BASE_URL}/books/`, book);
 
 // update a book
-export const updateBook = async (bookId, book) => {
+export const updateBook = async (bookId, book) => 
   await axios.put(`${BASE_URL}/books/${bookId}`, book);
-};
+
 
 // delete a book
 export const deleteBook = async (bookId) => 

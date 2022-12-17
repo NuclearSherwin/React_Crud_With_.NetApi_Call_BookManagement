@@ -36,17 +36,17 @@ const EditComponent = () => {
   const onChange = (e) => {
     setBook({ ...book, [e.target.name]: e.target.value });
 
-    if (e.target.value.name === "name")
+    if (e.target.name === "name")
       error.name = e.target.value.length === 0 ? "Name is required!" : "";
 
-    if (e.target.value.name === "author")
+    if (e.target.name === "author")
       error.author = e.target.value.length === 0 ? "Author is required!" : "";
 
-    if (e.target.value.name === "pageNumber")
+    if (e.target.name === "pageNumber")
       error.pageNumber =
         e.target.value.length === 0 ? "Page number is required!" : "";
 
-    if (e.target.value.name === "publishDate")
+    if (e.target.name === "publishDate")
       error.publishDate =
         e.target.value.length === 0 ? "Publish date is required!" : "";
 
@@ -82,7 +82,7 @@ const EditComponent = () => {
 
   return (
     <div className="container">
-      <h2>Add Edit Book</h2>
+      <h2>Edit Book</h2>
       <form onSubmit={onSubmit}>
         <div className="form-group">
           <label>Name</label>
