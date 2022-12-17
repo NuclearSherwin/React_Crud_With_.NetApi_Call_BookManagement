@@ -25,6 +25,10 @@ const CreateComponent = () => {
   const [error, setError] = useState(initError);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    console.log(book);
+  }, [book]);
+
   const onChange = (e) => {
     setBook({ ...book, [e.target.name]: e.target.value });
     // display error if there is not any character
@@ -45,7 +49,7 @@ const CreateComponent = () => {
   // onsubmit to handle
   const onSubmit = (e) => {
     e.preventDefault();
-    if (validateInput) {
+    if (validateInput()) {
       book.publishDate = date;
       createBook(book)
         .then((res) => {
@@ -61,10 +65,10 @@ const CreateComponent = () => {
   const validateInput = () => {
     let validate = true;
     error.name = book.name.length === 0 ? "Name is required!" : "";
-    error.author = book.name.length === 0 ? "Author is required!" : "";
-    error.pageNumber = book.name.length === 0 ? "Page number is required!" : "";
+    error.author = book.author.length === 0 ? "Author is required!" : "";
+    error.pageNumber = book.pageNumber.length === 0 ? "Page number is required!" : "";
     error.publishDate =
-      book.name.length === 0
+      book.publishDate.length === 0
         ? "publish date is required!"
         : // set all error to error of use state
           setError({ ...error });
@@ -88,8 +92,8 @@ const CreateComponent = () => {
               onChange={(e) => onChange(e)}
               className="form-control"
             ></input>
-            {error.author && (
-              <small className="form-text text-danger">{error.author}</small>
+            {error.name && (
+              <small className="form-text text-danger">{error.name}</small>
             )}
           </div>
           <div className="form-group">
