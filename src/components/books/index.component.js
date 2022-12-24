@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getAllBooks, deleteBook } from "../functions/books";
+import { useSelector, useDispatch } from "react-redux";
+import {increment, decrement} from '../redux/actions/counter';
+
 
 const IndexComponent = () => {
   const [books, setBooks] = useState([]);
+  const counter = useSelector((state) => state.counter);
+  const dispatch = useDispatch();
 
   // for set data after done loading page once
   useEffect(() => {
@@ -57,7 +62,12 @@ const IndexComponent = () => {
 
   return (
     <>
-      <div>
+      <div className="container">
+        <div>
+          <h1>Counter {counter}</h1>
+          <button onClick={() => dispatch(increment(5))}>Increment</button>
+          <button onClick={() => dispatch(decrement(5))}>Decrement</button>
+        </div>
         <table class="table table-dark">
           <thead>
             <tr>

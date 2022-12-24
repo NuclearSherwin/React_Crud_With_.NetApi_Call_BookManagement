@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { createBook } from "../functions/books";
 import { useNavigate } from "react-router-dom";
 import DateTimePicker from "react-datetime-picker";
+import { useSelector } from "react-redux";
 
 // components
 
@@ -24,6 +25,8 @@ const CreateComponent = () => {
   const [date, setDate] = useState(new Date());
   const [error, setError] = useState(initError);
   const navigate = useNavigate();
+
+  const counter = useSelector((state) => state.counter);
 
   useEffect(() => {
     console.log(book);
@@ -66,7 +69,8 @@ const CreateComponent = () => {
     let validate = true;
     error.name = book.name.length === 0 ? "Name is required!" : "";
     error.author = book.author.length === 0 ? "Author is required!" : "";
-    error.pageNumber = book.pageNumber.length === 0 ? "Page number is required!" : "";
+    error.pageNumber =
+      book.pageNumber.length === 0 ? "Page number is required!" : "";
     error.publishDate =
       book.publishDate.length === 0
         ? "publish date is required!"
@@ -81,6 +85,9 @@ const CreateComponent = () => {
   return (
     <>
       <div className="container">
+        <div>
+          <h1>Counter {counter}</h1>
+        </div>
         <h2>Add New Book</h2>
         <form onSubmit={onSubmit}>
           <div className="form-group">
