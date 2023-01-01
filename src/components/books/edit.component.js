@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import DateTimePicker from "react-datetime-picker";
 import { useNavigate, useParams } from "react-router-dom";
 import { getBookById, updateBook } from "../functions/books";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 const initValue = {
   name: "",
@@ -25,8 +27,10 @@ const EditComponent = () => {
   const navigate = useNavigate();
   const bookId = params.id;
 
+  const user = useSelector(state => state.user);
+
   useEffect(() => {
-    getBookById(bookId)
+    getBookById(bookId, user.token)
       .then((res) => {
         setBook(res.data);
       })
@@ -57,7 +61,7 @@ const EditComponent = () => {
     e.preventDefault();
     if (validateInput) {
       book.publishDate = date;
-      updateBook(bookId, book)
+      updateBook(bookId, book, user.token)
         .then((res) => {
           navigate("/");
         })

@@ -25,6 +25,7 @@ const CreateComponent = () => {
   const [date, setDate] = useState(new Date());
   const [error, setError] = useState(initError);
   const navigate = useNavigate();
+  const user = useSelector(state => state.user);
 
   const counter = useSelector((state) => state.counter);
 
@@ -54,7 +55,7 @@ const CreateComponent = () => {
     e.preventDefault();
     if (validateInput()) {
       book.publishDate = date;
-      createBook(book)
+      createBook(book, user.token)
         .then((res) => {
           navigate("/");
         })

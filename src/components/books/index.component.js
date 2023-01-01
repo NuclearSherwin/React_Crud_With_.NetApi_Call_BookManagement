@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getAllBooks, deleteBook } from "../functions/books";
 import { useSelector, useDispatch } from "react-redux";
-import {increment, decrement} from '../redux/actions/counter';
-
+import { increment, decrement } from "../redux/actions/counter";
 
 const IndexComponent = () => {
   const [books, setBooks] = useState([]);
   const counter = useSelector((state) => state.counter);
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   // for set data after done loading page once
@@ -17,7 +17,7 @@ const IndexComponent = () => {
 
   // init values
   const onInit = () => {
-    getAllBooks()
+    getAllBooks(user.token)
       .then((res) => {
         setBooks(res.data);
         console.log(res.data);
@@ -29,7 +29,7 @@ const IndexComponent = () => {
   const onDelete = (bookId) => {
     // eslint-disable-next-line no-restricted-globals
     if (confirm("Are you sure to delete the row")) {
-      deleteBook(bookId).then(() => {
+      deleteBook(bookId, user.token).then(() => {
         // reload the data
         onInit();
       });
@@ -47,7 +47,9 @@ const IndexComponent = () => {
         <td>{book.publishDate}</td>
         <td>
           <div className="d-flex">
-            <Link to={'/edit/' + book.id}  className="btn btn-warning">Edit</Link>
+            <Link to={"/edit/" + book.id} className="btn btn-warning">
+              Edit
+            </Link>
             <button
               onClick={() => onDelete(book.id)}
               className="btn btn-danger"

@@ -6,6 +6,7 @@ import Navbar from "./components/navbar";
 import IndexComponent from './components/books/index.component'
 import CreateComponent from './components/books/create.component'
 import EditComponent from "./components/books/edit.component";
+import LoginComponent from "./components/login.component";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           </Route>
           <Route path="/create" element={<CreateComponent />} />
           <Route path="/edit/:id" element={<EditComponent />} />
+          <Route path="/login" element={<LoginComponent />} /> 
         </Routes>
       </div>
     </>

@@ -1,11 +1,19 @@
-import React from 'react'
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from 'react-bootstrap/Navbar';
-import { Link } from 'react-router-dom';
+import React from "react";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { useDispatch } from "react-redux";
+// import Navbar from "react-bootstrap/Navbar";
+import { Link } from "react-router-dom";
+import { logoutSuccess } from "./redux/actions/user";
 
-const navbar = () => {
+
+const Navbar = () => {
+  const dispatch = useDispatch();
+  
+  const logout = () => {
+    dispatch(logoutSuccess());
+  }
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -36,13 +44,27 @@ const navbar = () => {
                   Add book
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link to="/login" className="nav-link">
+                  Login
+                </Link>
+              </li>
+              <li className="nav-item">
+                <button
+                  to="/logout"
+                  onClick={() => logout()}
+                  className="nav-link"
+                >
+                  Logout
+                </button>
+              </li>
             </ul>
           </div>
         </div>
       </nav>
       <br />
     </>
-  )
-}
+  );
+};
 
-export default navbar
+export default Navbar;
